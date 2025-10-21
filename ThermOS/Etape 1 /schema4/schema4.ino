@@ -1,35 +1,38 @@
-#include <LiquidCrystal_I2C.h>
-#include  <Wire.h>
-LiquidCrystal_I2C lcd(0x27,  16, 2);
-#include "DHT.h"
-#define DHTPIN 2
-#define DHTTYPE DHT11
-DHT dht(DHTPIN, DHTTYPE);
+// Programme de test pour faire clignoter plusieurs LED avec une vitesse variable
 
 void setup() {
-  // Initialise la capteur DHT11
-  dht.begin();
-  // Initialize LCD screen
-  lcd.init();
-  // Turn on the backlight
-  lcd.backlight();
-  
-  Serial.begin(9600);
-  
-
+  pinMode(11, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(9, OUTPUT);
 }
 
 void loop() {
-  // Wait for a second
-  delay(1000);
+    //Boucle for pour faire varier la vitesse des leds
+  for (int delai = 500; delai >= 100; delai -= 100) {
+    allumerLEDs(delai);
+  }
+}
 
-  // Tell the screen to write on the top row
-  lcd.setCursor(0, 0);
-  // Write on the top row
-  lcd.print("Temperature = " + String(dht.readTemperature())+" °C");
-  
-  // Tell the screen to write on the bottom row
-  lcd.setCursor(0, 1);
-  // Write on the bottom row
-  lcd.print("Humidite = " + String(dht.readHumidity())+" %");
+// Fonction pour faire clignoter les leds
+void allumerLEDs(int delai) {
+  digitalWrite(11, HIGH);
+  delay(delai);
+  digitalWrite(11, LOW);
+  delay(delai);
+
+  digitalWrite(2, HIGH);
+  delay(delai);
+  digitalWrite(2, LOW);
+  delay(delai);
+
+  digitalWrite(13, HIGH);
+  delay(delai);
+  digitalWrite(13, LOW);
+  delay(delai);
+
+  digitalWrite(9, HIGH);
+  delay(delai);
+  digitalWrite(9, LOW);
+  delay(delai);
 }

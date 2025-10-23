@@ -1,13 +1,3 @@
-int first = 0;
-// 
-void fadeLED(int pin1, int pin2) {
-  for (int val = 0; val <= 255; val++) {
-    analogWrite(pin1, 255 - val); 
-    analogWrite(pin2, val);       
-    delay(5);
-  }
-}
-
 void setup() {
   pinMode(3, OUTPUT);
   pinMode(5, OUTPUT);
@@ -16,14 +6,55 @@ void setup() {
   pinMode(10, OUTPUT);
 }
 
-void loop() {
-  if (first == 0) {
-    fadeLED(0, 3);
-    first += 1;
+void loop() ;
+  for (int val = 0; val <= 255; val++) {
+    analogWrite(3, val);
+    delay(20);
   }
-  fadeLED(3, 5);
-  fadeLED(5, 6);
-  fadeLED(6, 9);
-  fadeLED(9, 10);
-  fadeLED(10, 3); 
+  delay(5000);
+
+  for (int val = 0; val <= 255; val++) {
+    analogWrite(5, val);
+    delay(20);
+  }
+  delay(5000);
+
+  for (int val = 0; val <= 255; val++) {
+    analogWrite(6, val);
+    delay(20);
+  }
+  delay(5000);
+
+  for (int val = 0; val <= 255; val++) {
+    analogWrite(9, val);
+    delay(20);
+  }
+  delay(5000);
+
+  for (int val = 0; val <= 255; val++) {
+    analogWrite(10, val);
+    delay(20);
+  }
+  delay(5000);
+
+  for (int i = 0; i < 3; i++) {
+    analogWrite(3, 255);
+    analogWrite(5, 255);
+    analogWrite(6, 255);
+    analogWrite(9, 255);
+    analogWrite(10, 255);
+    delay(300);
+
+    analogWrite(3, 0);
+    analogWrite(5, 0);
+    analogWrite(6, 0);
+    analogWrite(9, 0);
+    analogWrite(10, 0);
+    delay(300);
+  }
+  analogWrite(3, 0);
+  analogWrite(5, 0);
+  analogWrite(6, 0);
+  analogWrite(9, 0);
+  analogWrite(10, 0);
 }

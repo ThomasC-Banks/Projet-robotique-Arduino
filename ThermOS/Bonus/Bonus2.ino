@@ -5,7 +5,6 @@ void setup() {
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
 }
-
 void loop() ;
   for (int val = 0; val <= 255; val++) {
     analogWrite(3, val);
